@@ -789,7 +789,7 @@ func (z *Tokenizer) readStartTag() TokenType {
 	case 'i':
 		raw = z.startTagIn("iframe")
 	case 'n':
-		raw = z.startTagIn("noembed", "noframes")
+		raw = z.startTagIn("noembed", "noframes", "noscript")
 	case 'p':
 		raw = z.startTagIn("plaintext")
 	case 's':
@@ -1161,8 +1161,8 @@ func (z *Tokenizer) TagAttr() (key, val []byte, moreAttr bool) {
 	return nil, nil, false
 }
 
-// Token returns the next Token. The result's Data and Attr values remain valid
-// after subsequent Next calls.
+// Token returns the current Token. The result's Data and Attr values remain
+// valid after subsequent Next calls.
 func (z *Tokenizer) Token() Token {
 	t := Token{Type: z.tt}
 	switch z.tt {
@@ -1211,7 +1211,7 @@ func NewTokenizerFragment(r io.Reader, contextTag string) *Tokenizer {
 	}
 	if contextTag != "" {
 		switch s := strings.ToLower(contextTag); s {
-		case "iframe", "noembed", "noframes", "plaintext", "script", "style", "title", "textarea", "xmp":
+		case "iframe", "noembed", "noframes", "noscript", "plaintext", "script", "style", "title", "textarea", "xmp":
 			z.rawTag = s
 		}
 	}

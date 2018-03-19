@@ -17,12 +17,10 @@
 |   <body>
 |     <p>
 |       id="status"
-|     <noscript>
-|       <strong>
-|         "A"
-|     <span>
-|       "B"
-|     <p>
+|       <noscript>
+|         "<strong>A</strong>"
+|       <span>
+|         "B"
 
 #data
 <div><sarcasm><div></div></sarcasm></div>
